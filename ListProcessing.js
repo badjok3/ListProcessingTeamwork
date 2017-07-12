@@ -21,15 +21,17 @@ function process() {
             theArray.splice(+a, 0, b);
 
 
+        },
+        sort: function () {
+            theArray.sort() + '\n';
+
         }
 
     };
     let input = $('#command');
     let result = $('#result');
 
-    if (result.text().split('\n').length === 1) {
-        result.text(result.text() + input.val() + '\n');
-        theArray = input.val().split(' ').filter(s => s !== '');
+
     } else {
         if (input.val()) {
             try {
