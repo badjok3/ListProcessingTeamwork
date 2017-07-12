@@ -3,10 +3,14 @@ let theArray = [];
 function process() {
     let commands = {
         reverse: function () {
-            theArray = theArray.reverse().join(' ');
+            theArray = theArray.reverse();
         },
         add: function () {
             //TODO: delete element @ index
+        },
+        sort: function () {
+            theArray.sort() + '\n';
+
         }
     };
     let input = $('#command');
@@ -18,7 +22,7 @@ function process() {
         } else {
 
             commands[input.val()]();
-            result.text(result.text() + theArray + '\n');
+            result.text(result.text() + theArray.join(' ') + '\n');
         }
 
 
