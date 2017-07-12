@@ -4,34 +4,13 @@
     <meta charset="UTF-8">
     <title>Console</title>
     <script src="./script/jquery-3.2.1.js"></script>
+    <script src="ListProcessing.js"></script>
 </head>
 <body>
 <input id="command" style="width: 200px" >
 <button onclick="print()">Execute</button><br><br>
 <textarea id="result" style="width: 200px; height: 200px">
 </textarea>
-<script>
-    function print() {
-        let commands = {
-            reverse: function () {
-                // TODO: Reverse theArray
-            },
-            delete: function (index) {
-                //TODO: delete element @ index
-            },
 
-        };
-
-        let input = $('#command');
-        let result = $('#result');
-        let theArray = [];
-        let initialize = false;
-        result.text(result.text() + input.val() + '\n');
-        theArray = result.text().split('\n')[0];
-
-        input.val('');
-        console.log(theArray)
-    }
-</script>
 </body>
 </html>
