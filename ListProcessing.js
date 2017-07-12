@@ -1,22 +1,27 @@
+let theArray = [];
 
-function print() {
+function process() {
     let commands = {
         reverse: function () {
-            // TODO: Reverse theArray
+            theArray = theArray.reverse().join(' ');
         },
-        delete: function (index) {
+        add: function () {
             //TODO: delete element @ index
-        },
-
+        }
     };
-
     let input = $('#command');
     let result = $('#result');
-    let theArray = [];
-    let initialize = false;
-    result.text(result.text() + input.val() + '\n');
-    theArray = result.text().split('\n')[0];
 
-    input.val('');
-    console.log(theArray)
+        if (result.text().split('\n').length === 1) {
+            result.text(result.text() + input.val() + '\n');
+            theArray = input.val().split(' ').filter(s => s !== '');
+        } else {
+
+            commands[input.val()]();
+            result.text(result.text() + theArray + '\n');
+        }
+
+
+        input.val('');
+        console.log(theArray)
 }
