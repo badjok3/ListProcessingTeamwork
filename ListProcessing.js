@@ -44,6 +44,8 @@ function process() {
                     break;
                 case 'left':
                     break;
+                default:
+                    throw new Error('Error: invalid command parameters');
             }
         },
         sort: function () {
