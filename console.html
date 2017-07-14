@@ -8,8 +8,13 @@
 </head>
 <body>
 <input id="command" style="width: 200px" >
-<button onclick="process()">Execute</button><br><br>
+<button id="executeBtn">Execute</button><br><br>
 <textarea id="result" style="width: 200px; height: 200px">
 </textarea>
+<script>
+    window.onload = function () {
+        process();
+    }
+</script>
 </body>
 </html>
