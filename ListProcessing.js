@@ -36,16 +36,20 @@ function process() {
         delete: function ([a]) {
 
         },
-        rollLeft: function () {
-
-        },
-        rollRight: function () {
-
+        roll: function ([direction]) {
+            switch (direction) {
+                case 'right':
+                    let lastElement = theArray.pop();
+                    theArray.unshift(lastElement);
+                    break;
+                case 'left':
+                    break;
+            }
         },
         sort: function () {
             theArray.sort() + '\n';
         },
-        count: function ([a]) {
+        count: function ([n]) {
 
         },
         end: function () {
