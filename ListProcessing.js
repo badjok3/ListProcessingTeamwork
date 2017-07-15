@@ -8,7 +8,7 @@ function process() {
 
     executeBtn.on('click', execute);
     input.keypress(function(event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
+        let keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
             execute();
         }
@@ -27,11 +27,11 @@ function process() {
         reverse: function () {
             theArray = theArray.reverse();
         },
-        insert: function ([a, b]) {
-            if ((a > theArray.length - 1) || (a < 0)) {
-                throw new Error(`Error: invalid index ${a}`);
+        insert: function ([index, word]) {
+            if ((index > theArray.length - 1) || (index < 0)) {
+                throw new Error(`Error: invalid index ${index}`);
             }
-            theArray.splice(+a, 0, b);
+            theArray.splice(index, 0, word);
         },
         delete: function ([a]) {
 
@@ -68,7 +68,7 @@ function process() {
         if (currentCommand) {
             try {
                 if (theArray.length === 0) {
-                    input.val().split(' ').filter(w => w !== '').forEach(e => theArray.push(e));
+                    tokens.forEach(e => theArray.push(e));
                     result.text(result.text() + theArray.join(' ') + '\n');
                 } else {
                     if (!commands.hasOwnProperty(currentCommand)) {
@@ -79,7 +79,6 @@ function process() {
                 }
             } catch (err) {
                 result.text(result.text() + err.message + '\n');
-                window.alert(err.message)
             } finally {
                 input.val('');
             }
