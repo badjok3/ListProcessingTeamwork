@@ -21,8 +21,11 @@ function process() {
             }
             theArray.push(a);
         },
-        prepend: function ([a]) {
-
+        prepend: function (arr) {
+            if (arr.length != 1) {
+                throw new Error("invalid number of parameters")
+            }
+            theArray.splice(0, 0, arr[0]);
         },
         reverse: function () {
             theArray = theArray.reverse();
@@ -48,7 +51,10 @@ function process() {
                     throw new Error('Error: invalid command parameters');
             }
         },
-        sort: function () {
+        sort: function ([a]) {
+            if (a) {
+                throw new Error("invalid parameters")
+            }
             theArray.sort() + '\n';
         },
         count: function ([n]) {
