@@ -61,7 +61,6 @@ function process() {
 
         },
         end: function () {
-
         }
     };
 
@@ -81,7 +80,13 @@ function process() {
                         throw new Error('Error: invalid command');
                     }
                     commands[currentCommand](data);
-                    result.text(result.text() + theArray.join(' ') + '\n');
+                    if (currentCommand != 'end') {
+                        result.text(result.text() + theArray.join(' ') + '\n');
+                    } else {
+                        result.text('Finished');
+                        executeBtn.off('click', execute);
+                    }
+
                 }
             } catch (err) {
                 result.text(result.text() + err.message + '\n');
