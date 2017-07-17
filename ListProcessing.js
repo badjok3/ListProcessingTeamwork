@@ -36,8 +36,11 @@ function process() {
             }
             theArray.splice(index, 0, word);
         },
-        delete: function ([a]) {
-
+        delete: function (index) {
+            if(index < 0 || index > theArray.length - 1) {
+                throw new Error(`Error: invalid index ${index}`);
+            }
+            theArray.splice(index, 1);
         },
         roll: function ([direction]) {
             switch (direction) {
@@ -46,6 +49,13 @@ function process() {
                     theArray.unshift(lastElement);
                     break;
                 case 'left':
+                    let firstElem = theArray[0];
+                    let newArray = [];
+                    for(let i = 1; i < theArray.length; i++) {
+                        newArray.push(theArray[i]);
+                    }
+                    newArray[newArray.length] = firstElem;
+                    theArray = newArray;
                     break;
                 default:
                     throw new Error('Error: invalid command parameters');
@@ -57,8 +67,14 @@ function process() {
             }
             theArray.sort() + '\n';
         },
-        count: function ([n]) {
-
+        count: function (word) {
+            let count = 0;
+            theArray.forEach(elem => {
+               if(elem === word) {
+                   count++;
+               }
+            });
+            return count;
         },
         end: function () {
         }
@@ -81,6 +97,10 @@ function process() {
                     }
                     commands[currentCommand](data);
                     if (currentCommand != 'end') {
+                        if(currentCommand === 'count') {
+                            result.text(result.text() + commands[currentCommand](tokens[1]) + '\n');
+                            return;
+                        }
                         result.text(result.text() + theArray.join(' ') + '\n');
                     } else {
                         result.text('Finished');
