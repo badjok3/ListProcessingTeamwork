@@ -23,7 +23,7 @@ function process() {
         },
         prepend: function (arr) {
             if (arr.length != 1) {
-                throw new Error("invalid number of parameters")
+                throw new Error("Error: invalid number of parameters")
             }
             theArray.splice(0, 0, arr[0]);
         },
@@ -31,14 +31,17 @@ function process() {
             theArray = theArray.reverse();
         },
         insert: function ([index, word]) {
-            if ((index > theArray.length - 1) || (index < 0)) {
-                throw new Error(`Error: invalid index ${index}`);
+            if ((index > theArray.length - 1) || (index < 0) || !(Number(index))) {
+                throw new Error(`Error: invalid index "${index}"`);
+            }
+            if (!word) {
+                throw new Error(`Error: invalid insert parameters`);
             }
             theArray.splice(index, 0, word);
         },
         delete: function (index) {
-            if(index < 0 || index > theArray.length - 1) {
-                throw new Error(`Error: invalid index ${index}`);
+            if(index < 0 || index > theArray.length - 1 || !(Number(index))) {
+                throw new Error(`Error: invalid index "${index}"`);
             }
             theArray.splice(index, 1);
         },
