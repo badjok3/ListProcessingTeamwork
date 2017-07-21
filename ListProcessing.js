@@ -31,16 +31,23 @@ function process() {
             theArray = theArray.reverse();
         },
         insert: function ([index, word]) {
-            if ((index > theArray.length - 1) || (index < 0) || !(Number(index))) {
+            try {
+                let testNumber = Number(index);
+                if ((testNumber > theArray.length) || (testNumber < 0) || !Number.isInteger(testNumber)) {
+                    throw new Error(`Error: invalid index "${index}"`);
+                }
+            } catch (err){
                 throw new Error(`Error: invalid index "${index}"`);
             }
+
             if (!word) {
                 throw new Error(`Error: invalid insert parameters`);
             }
+
             theArray.splice(index, 0, word);
         },
         delete: function (index) {
-            if(index < 0 || index > theArray.length - 1 || !(Number(index))) {
+            if(index < 0 || index > theArray.length - 1 || !Number(index)) {
                 throw new Error(`Error: invalid index "${index}"`);
             }
             theArray.splice(index, 1);
